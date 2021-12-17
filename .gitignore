@@ -4,3 +4,4 @@ __pycache__/
 fake
 db_helpers
 config.py
+*.db

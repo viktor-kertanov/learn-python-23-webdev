@@ -16,7 +16,7 @@
                     {% if news %}
                         {% for n in news %}
                             <h3><a href={{n["url"]}}>{{n["title"]}}</a></h3>
-                            <p>{{n.date}}</p>
+                            <p>{{n.published.strftime("%d.%m.%Y")}}</p>
                             <hr/>
                         {% endfor %}
                     {% else %}
