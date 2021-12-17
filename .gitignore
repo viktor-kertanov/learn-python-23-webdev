@@ -5,3 +5,4 @@ fake
 db_helpers
 config.py
 *.db
+.DS_Store
