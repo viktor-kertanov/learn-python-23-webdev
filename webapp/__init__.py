@@ -1,6 +1,12 @@
 from flask import Flask, render_template
 from webapp.model import db, News
 from webapp.weather import weather_by_city
+from webapp.db.queries import top_salary
+from webapp.forms import LoginForm
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
 
 def create_app():
     app = Flask(__name__)
@@ -19,4 +25,19 @@ def create_app():
                                news=news,
                                webpage_title=title
                                )
+    
+    @app.route('/pagination')
+    def pagination():
+        title = "Testing pagination"
+        salaries = top_salary(100)
+        return render_template("pagination.html",
+                               webpage_title=title,
+                               salaries=salaries)
+    
+    @app.route('/login')
+    def login():
+        title = "Авторизация"
+        login_form = LoginForm()
+        return render_template("login.html", page_title=title, form=login_form)
+    
     return app
