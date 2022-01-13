@@ -4,10 +4,6 @@ from webapp.db.model import News
 from webapp.weather import weather_by_city
 from webapp.db.queries import top_salary
 from webapp.forms import LoginForm
-from flask_sqlalchemy import SQLAlchemy
-
-# db = SQLAlchemy()
-
 
 def create_app():
     app = Flask(__name__)

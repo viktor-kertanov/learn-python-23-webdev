@@ -41,6 +41,6 @@ class User(Base):
     username = Column(String(50), index=True, unique=True)
     password = Column(String(128), index=True)
     role = Column(String(20), index=True)
-
-#     def __repr__(self):
-#         return f"<User {self.username}, Role {self.role}>"
+    
+    def __repr__(self):
+        return f"<User {self.username}, Role {self.role}>"
