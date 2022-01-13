@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Date, DateTime, Text
-from webapp.db.db import Base, engine
+from webapp.db.db import Base
 
 
 class Salary(Base):
@@ -33,6 +33,14 @@ class News(Base):
     def __repr__(self):
         return f'<News {self.title} {self.url}>'
 
+class User(Base):
+    __tablename__ = 'users'
+    __table_args__ = {'extend_existing': True}
 
-if __name__ == "__main__":
-    Base.metadata.create_all(bind=engine)
+    id = Column(Integer, primary_key=True)
+    username = Column(String(50), index=True, unique=True)
+    password = Column(String(128), index=True)
+    role = Column(String(20), index=True)
+
+#     def __repr__(self):
+#         return f"<User {self.username}, Role {self.role}>"

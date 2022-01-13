@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
-from webapp.model import db, News
+from webapp.db.model import News
+from webapp.db.db import db_session
 
 
 def get_python_news():
@@ -9,6 +10,7 @@ def get_python_news():
     if html:
         soup = BeautifulSoup(html, "html.parser")
         all_news = soup.select_one("div.medium-widget ul.menu").find_all("li")
+        print(f"We have {len(all_news)}")
         result_news = []
         for news in all_news:
             title = news.select_one("a").text
@@ -32,16 +34,14 @@ def _get_html(url):
 
 
 def _save_news(title, url, published):
-    news_exists = News.query.filter(News.url == url).count()
-    print(news_exists)
+    news_exists = db_session.query(News).filter(News.url == url).count()
     if not news_exists:
+        print(f"Title: {title}, URL: {url}, Published: {published}.")
         new_news = News(title=title, url=url, published=published)
-        db.session.add(new_news)
-        db.session.commit()
+        db_session.add(new_news)
+        db_session.commit()
 
 
 if __name__ == "__main__":
     a = get_python_news()
-    for i in a:
-        print(i)
 
