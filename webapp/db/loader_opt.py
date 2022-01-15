@@ -2,7 +2,7 @@ import csv
 import time
 
 from webapp.db.db import db_session
-from webapp.db.model import Salary
+from webapp.salary.models import Salary
 
 
 def read_csv(filename):
