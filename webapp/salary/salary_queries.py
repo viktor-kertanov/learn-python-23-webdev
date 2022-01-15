@@ -2,7 +2,7 @@ from sqlalchemy.sql import func
 from sqlalchemy import desc
 
 from webapp.db.db import db_session
-from webapp.db.model import Salary
+from webapp.salary.models import Salary
 
 def top_salary(num_rows):
     top_salary = db_session.query(Salary).order_by(Salary.salary.desc()).limit(num_rows)
