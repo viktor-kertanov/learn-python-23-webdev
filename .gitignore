@@ -7,3 +7,7 @@ db_helpers
 config.py
 *.db
 .DS_Store
+
+.env
+.vscode
+.idea
