@@ -7,6 +7,7 @@
         <title>{{ webpage_title }}</title>
     </head>
     <body>
+        {% include 'menu.html' %}
         <div class="container">
             <h1>{{ webpage_title }}</h1>
             {% block content %}{% endblock %} 
